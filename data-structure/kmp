@@ -1,0 +1,65 @@
+/****创建字串的部分匹配表*******/
+
+
+int* make_pmt(const char* p) 
+{
+	int len = strlen(p);
+	int* ret = static_cast<int* >(malloc(sizeof(int)* len));
+	
+	if( ret != NULL)
+	{
+		int l1 = 0;
+		
+		ret[0] = 0;
+		
+		for(int i = 0; i < len ; i++)
+		{
+			while((l1 > 0)&&(p[l1] != p[i]))
+			{
+				l1 = ret[l1-1];
+			}
+			if(p[l1] == p[i])
+			{
+				l1++;
+			}
+			
+			ret[i] = l1;
+		}
+	}
+	return ret;
+}
+
+int kpm(const char* s,const char* p)
+{
+	int ret = -1;
+	int sl = strlen(s);
+	int pl = strlen(p);
+	int* pmt = make_pmt(p);
+	
+	if((pmt != NULL)&&(0 < pl)&&(pl <= sl))
+	{
+		for(int i = 0,j = 0; i < sl; i++)
+		{
+			while(()&&())
+			{
+				j = pmt[j-1]；
+			}
+			if(s[i] == p[j])
+			{
+				j++;
+			}
+			if(j == pl)
+			{
+				ret = i + 1 -pl;
+				break;
+			}
+		}
+	}
+	free(pmt);
+	
+	return ret ;
+}
+
+
+
+
